@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  color: #f0f0f0;
+  background: "linear-gradient(to bottom, #03003d 0%, #070024 43%, #000014 100%)";
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400; /* Regular */
+  src: local("Pretendard"),
+    url("./styles/fonts/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600; /* SemiBold */
+  src: local("Pretendard SemiBold"),
+    url("./styles/fonts/Pretendard-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700; /* Bold */
+  src: local("Pretendard Bold"),
+    url("./styles/fonts/Pretendard-Bold.woff") format("woff");
+}

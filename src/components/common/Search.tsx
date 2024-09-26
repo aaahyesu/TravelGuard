@@ -1,0 +1,45 @@
+import React from "react";
+import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+const SearchContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin: 50px auto;
+`;
+
+const SearchInput = styled.input`
+  padding: 10px 50px;
+  width: 100%;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  color: #f0f0f0;
+
+  &:focus {
+    outline: none;
+    border-color: #4a4ae9;
+  }
+`;
+
+const SearchIcon = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+`;
+
+const Search: React.FC = () => {
+  return (
+    <SearchContainer>
+      <SearchIcon>
+        <FontAwesomeIcon icon={faSearch} size="lg" color="#f0f0f0" />
+      </SearchIcon>
+      <SearchInput type="text" placeholder="국가 명을 입력하세요" />
+    </SearchContainer>
+  );
+};
+
+export default Search;
