@@ -30,14 +30,20 @@ const SearchIcon = styled.span`
   transform: translateY(-50%);
   pointer-events: none;
 `;
-
-const Search: React.FC = () => {
+interface SearchProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange prop 정의
+}
+const Search: React.FC<SearchProps> = ({ onChange }) => {
   return (
     <SearchContainer>
       <SearchIcon>
         <FontAwesomeIcon icon={faSearch} size="lg" color="#f0f0f0" />
       </SearchIcon>
-      <SearchInput type="text" placeholder="국가 명을 입력하세요" />
+      <SearchInput
+        type="text"
+        placeholder="국가 명을 입력하세요"
+        onChange={onChange}
+      />
     </SearchContainer>
   );
 };

@@ -103,6 +103,7 @@ const DataBox = styled.button<{ color: string }>`
 
 const CountryInfoPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const alarmData = useAlarmData(); // API로부터 데이터를 가져옴
 
   const tabs = [
@@ -110,13 +111,20 @@ const CountryInfoPage: React.FC = () => {
     { text: "2단계 여행자제", color: "#5DAA8B", level: 2 },
     { text: "3단계 출국권고", color: "#E4D95D", level: 3 },
     { text: "4단계 여행금지", color: "#D14844", level: 4 },
-    { text: "0단계 여행유의", color: "#E0E0E0", level: 0 },
+    { text: "0단계 안전국가", color: "#E0E0E0", level: null },
   ];
 
   // 현재 활성화된 탭에 해당하는 경고 레벨 데이터 필터링
   const filteredData = alarmData.filter(
-    (item: AlarmDataItem) => item.alarm_lvl === tabs[activeTab].level
+    (item: AlarmDataItem) =>
+      item.alarm_lvl === tabs[activeTab].level &&
+      item.country_nm.toLowerCase().includes(searchTerm.toLowerCase()) // 검색어 필터링
   );
+
+  // 검색 핸들러 함수
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <Container>
@@ -124,8 +132,7 @@ const CountryInfoPage: React.FC = () => {
       <Subtitle>
         국가별 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를 제공합니다.
       </Subtitle>
-      <Search />
-
+      <Search onChange={handleSearchChange} /> {/* 검색어 업데이트 */}
       <TabContainer>
         {tabs.map((tab, index) => (
           <Tab
@@ -138,7 +145,6 @@ const CountryInfoPage: React.FC = () => {
           </Tab>
         ))}
       </TabContainer>
-
       <DataContainer>
         {filteredData.length > 0 ? (
           filteredData.map((data, index) => (

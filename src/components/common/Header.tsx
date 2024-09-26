@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import logo from "../../styles/image/logo.png";
 import hamburgerIcon from "../../styles/image/menuBar.png";
 
-// Styled components
 const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -50,18 +49,34 @@ const Menu = styled.ul`
   padding: 0;
 `;
 
-const MenuItem = styled.li`
+const MenuItem = styled.li<{ isActive: boolean }>`
   font-family: "Pretendard", sans-serif;
   font-size: 20px;
   font-weight: 400;
   color: #f0f0f0;
   text-align: center;
+  position: relative;
 
   a {
     color: inherit;
     text-decoration: none;
     cursor: pointer;
   }
+
+  // active 상태에 따라 border 넣어서 표시하기
+  ${({ isActive }) =>
+    isActive &&
+    `
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px; // border 위치 조정
+      left: 0;
+      right: 0;
+      height: 3px; // border 높이
+      border-bottom: 1px solid #7fa9ff;
+    }
+  `}
 `;
 
 const HamburgerMenu = styled.img`
@@ -89,12 +104,17 @@ const MobileMenuContainer = styled(MenuContainer)`
   }
 `;
 
-// Header component
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0); // 활성 메뉴 인덱스 추가
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleMenuItemClick = (index: number) => {
+    setActiveIndex(index); // 클릭된 인덱스 설정
+    setIsMenuOpen(false); // 모바일 메뉴 클릭 시 닫기
   };
 
   return (
@@ -105,15 +125,20 @@ const Header: React.FC = () => {
 
       <MenuContainer>
         <Menu>
-          <MenuItem>
-            <Link to="/country-info">국가별 정보</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/Permission-enter">입국 허가요건 정보</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/embassy-info">국가별 대사관 정보</Link>
-          </MenuItem>
+          {[
+            { path: "/country-info", label: "국가별 정보" },
+            { path: "/Permission-enter", label: "입국 허가요건 정보" },
+            { path: "/embassy-info", label: "국가별 대사관 정보" },
+          ].map((item, index) => (
+            <MenuItem
+              key={index}
+              isActive={activeIndex === index} // active 상태 전달
+            >
+              <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
+                {item.label}
+              </Link>
+            </MenuItem>
+          ))}
         </Menu>
       </MenuContainer>
 
@@ -122,15 +147,20 @@ const Header: React.FC = () => {
       {isMenuOpen && (
         <MobileMenuContainer>
           <Menu>
-            <MenuItem>
-              <Link to="/country-info">국가별 정보</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/Permission-enter">입국 허가요건 정보</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/embassy-info">국가별 대사관 정보</Link>
-            </MenuItem>
+            {[
+              { path: "/country-info", label: "국가별 정보" },
+              { path: "/Permission-enter", label: "입국 허가요건 정보" },
+              { path: "/embassy-info", label: "국가별 대사관 정보" },
+            ].map((item, index) => (
+              <MenuItem
+                key={index}
+                isActive={activeIndex === index} // active 상태 전달
+              >
+                <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
+                  {item.label}
+                </Link>
+              </MenuItem>
+            ))}
           </Menu>
         </MobileMenuContainer>
       )}
