@@ -21,6 +21,9 @@ const SearchInput = styled.input`
     outline: none;
     border-color: #4a4ae9;
   }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const SearchIcon = styled.span`
@@ -29,7 +32,11 @@ const SearchIcon = styled.span`
   left: 10px;
   transform: translateY(-50%);
   pointer-events: none;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
+
 interface SearchProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // onChange prop 정의
 }

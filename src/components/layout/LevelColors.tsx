@@ -59,7 +59,7 @@ const containerStyle = css`
   background-color: #1c1c1e;
   border-radius: 10px;
   width: 400px;
-  z-index: 1000;
+  z-index: 100;
 
   @media (max-width: 768px) {
     bottom: 20%;

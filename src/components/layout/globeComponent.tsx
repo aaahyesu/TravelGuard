@@ -72,6 +72,7 @@ const GlobeComponent: React.FC = () => {
     align-items: center; /* 지구본을 위로 이동 */
     @media (max-width: 768px) {
       align-items: flex-start;
+      padding-top: 20px;
       height: 100vh;
     }
   `;
@@ -86,11 +87,11 @@ const GlobeComponent: React.FC = () => {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     color: white;
     transform: translate(-50%, 0);
-    z-index: 1000;
+    z-index: 100;
     width: 300px;
 
     @media (max-width: 768px) {
-      top: 12%;
+      top: 14%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 150px;

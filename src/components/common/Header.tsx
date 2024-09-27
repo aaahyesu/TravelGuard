@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import logo from "../../styles/image/logo.png";
 import hamburgerIcon from "../../styles/image/menuBar.png";
@@ -63,20 +63,31 @@ const MenuItem = styled.li<{ isActive: boolean }>`
     cursor: pointer;
   }
 
-  // active 상태에 따라 border 넣어서 표시하기
   ${({ isActive }) =>
     isActive &&
     `
     &::after {
       content: '';
       position: absolute;
-      bottom: -5px; // border 위치 조정
+      bottom: -5px;
       left: 0;
       right: 0;
-      height: 3px; // border 높이
+      height: 3px;
       border-bottom: 1px solid #7fa9ff;
     }
   `}
+
+  &:hover {
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-bottom: 1px solid #7fa9ff;
+    }
+  }
 `;
 
 const HamburgerMenu = styled.img`
@@ -89,33 +100,102 @@ const HamburgerMenu = styled.img`
   }
 `;
 
-const MobileMenuContainer = styled(MenuContainer)`
-  display: none;
+const MobileMenuContainer = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 100vh;
+  background-color: rgba(11, 11, 30, 0.95);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
+  transition: transform 0.3s ease-in-out;
 
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: #0b0b1e;
-    z-index: 1000;
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+const CloseButton = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  cursor: pointer;
+`;
+
+const MobileMenu = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+`;
+
+const MobileMenuItem = styled.li<{ isActive: boolean }>`
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #f0f0f0;
+  text-align: center;
+  position: relative;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  ${({ isActive }) =>
+    isActive &&
+    `
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-bottom: 1px solid #7fa9ff;
+    }
+  `}
+
+  &:hover {
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-bottom: 1px solid #7fa9ff;
+    }
   }
 `;
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [activeIndex, setActiveIndex] = useState<number>(0); // 활성 메뉴 인덱스 추가
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
   const handleMenuItemClick = (index: number) => {
-    setActiveIndex(index); // 클릭된 인덱스 설정
-    setIsMenuOpen(false); // 모바일 메뉴 클릭 시 닫기
+    setActiveIndex(index);
+    setIsMenuOpen(false);
   };
+
+  const menuItems = [
+    { path: "/country-info", label: "국가별 정보" },
+    { path: "/Permission-enter", label: "입국 허가요건 정보" },
+    { path: "/embassy-info", label: "국가별 대사관 정보" },
+  ];
 
   return (
     <NavBar>
@@ -125,43 +205,39 @@ const Header: React.FC = () => {
 
       <MenuContainer>
         <Menu>
-          {[
-            { path: "/country-info", label: "국가별 정보" },
-            { path: "/Permission-enter", label: "입국 허가요건 정보" },
-            { path: "/embassy-info", label: "국가별 대사관 정보" },
-          ].map((item, index) => (
-            <MenuItem
-              key={index}
-              isActive={activeIndex === index} // active 상태 전달
-            >
-              <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
-                {item.label}
-              </Link>
-            </MenuItem>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <MenuItem key={index} isActive={isActive}>
+                <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
+                  {item.label}
+                </Link>
+              </MenuItem>
+            );
+          })}
         </Menu>
       </MenuContainer>
 
       <HamburgerMenu src={hamburgerIcon} alt="Menu" onClick={toggleMenu} />
 
       {isMenuOpen && (
-        <MobileMenuContainer>
-          <Menu>
-            {[
-              { path: "/country-info", label: "국가별 정보" },
-              { path: "/Permission-enter", label: "입국 허가요건 정보" },
-              { path: "/embassy-info", label: "국가별 대사관 정보" },
-            ].map((item, index) => (
-              <MenuItem
-                key={index}
-                isActive={activeIndex === index} // active 상태 전달
-              >
-                <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
-                  {item.label}
-                </Link>
-              </MenuItem>
-            ))}
-          </Menu>
+        <MobileMenuContainer isOpen={isMenuOpen}>
+          <CloseButton src={hamburgerIcon} alt="Close" onClick={toggleMenu} />
+          <MobileMenu>
+            {menuItems.map((item, index) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <MobileMenuItem key={index} isActive={isActive}>
+                  <Link
+                    to={item.path}
+                    onClick={() => handleMenuItemClick(index)}
+                  >
+                    {item.label}
+                  </Link>
+                </MobileMenuItem>
+              );
+            })}
+          </MobileMenu>
         </MobileMenuContainer>
       )}
     </NavBar>

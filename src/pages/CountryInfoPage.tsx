@@ -7,6 +7,10 @@ const Container = styled.div`
   color: #f0f0f0;
   min-height: 100vh;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 5px;
+  }
 `;
 
 const Title = styled.h1`
@@ -15,6 +19,12 @@ const Title = styled.h1`
   font-weight: 700;
   margin-bottom: 20px;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    padding-top: 15px;
+    margin-bottom: 10px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -22,12 +32,23 @@ const Subtitle = styled.p`
   font-weight: 400;
   color: #d3d3d3;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 `;
 
 const TabContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Tab = styled.button<{ active: boolean }>`
@@ -61,6 +82,11 @@ const Tab = styled.button<{ active: boolean }>`
         ? `1px solid rgba(127, 169, 255, 0.8)`
         : `1px solid rgba(8, 8, 8, 0.7)`};
   }
+
+  @media (max-width: 768px) {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
 `;
 
 const ColorIcon = styled.span<{ color: string }>`
@@ -79,8 +105,12 @@ const DataContainer = styled.div`
   background-color: #1a1a1a;
   border: 1px solid #7fa9ff99;
   border-radius: 10px;
-  max-height: 500px; /* 스크롤을 위한 최대 높이 설정 */
-  overflow-y: auto; /* 스크롤 활성화 */
+  max-height: 500px;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 const DataBox = styled.button<{ color: string }>`
@@ -95,9 +125,15 @@ const DataBox = styled.button<{ color: string }>`
   background-color: rgba(8, 8, 8, 0.3);
   border: 1px solid rgba(8, 8, 8, 0.5);
   opacity: 0.7;
+
   &:hover {
     background-color: #52525e;
     border: 1px solid rgba(127, 169, 255, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+    font-size: 14px;
   }
 `;
 
@@ -114,14 +150,12 @@ const CountryInfoPage: React.FC = () => {
     { text: "0단계 안전국가", color: "#E0E0E0", level: null },
   ];
 
-  // 현재 활성화된 탭에 해당하는 경고 레벨 데이터 필터링
   const filteredData = alarmData.filter(
     (item: AlarmDataItem) =>
       item.alarm_lvl === tabs[activeTab].level &&
       item.country_nm.toLowerCase().includes(searchTerm.toLowerCase()) // 검색어 필터링
   );
 
-  // 검색 핸들러 함수
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };

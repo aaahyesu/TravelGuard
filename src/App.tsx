@@ -15,6 +15,9 @@ const SubContainer = styled.div`
   background: linear-gradient(to bottom, #0a0818, #1b3d50);
 
   overflow: auto;
+  @media (max-width: 768px) {
+    padding: 0 10%;
+  }
 `;
 
 function App() {

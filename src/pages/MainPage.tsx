@@ -15,7 +15,7 @@ const GlobeComponent: React.FC = () => {
   useEffect(() => {
     // globeEl.current가 null이 아닌 경우에만 pointOfView 메서드 호출
     if (globeEl.current) {
-      globeEl.current.pointOfView({ lat: 0, lng: 0, altitude: 2 });
+      globeEl.current.pointOfView({ lat: 37.5665, lng: 126.978, altitude: 2 });
     }
   }, []);
 
