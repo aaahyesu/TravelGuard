@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import Search from "../components/common/Search";
 import { useAlarmData, AlarmDataItem } from "../hooks/useLoadAlarm";
 
@@ -141,6 +142,7 @@ const CountryInfoPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const alarmData = useAlarmData(); // API로부터 데이터를 가져옴
+  const navigate = useNavigate();
 
   const tabs = [
     { text: "1단계 여행유의", color: "#4C8CFF", level: 1 },
@@ -158,6 +160,10 @@ const CountryInfoPage: React.FC = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleCountryClick = (country: AlarmDataItem) => {
+    navigate(`/country-detail/${country.country_nm}`, { state: { country } }); // 국가 객체를 상태로 전달(URL파라미터로 전달 시 전달 안됨.. )
   };
 
   return (
@@ -182,7 +188,11 @@ const CountryInfoPage: React.FC = () => {
       <DataContainer>
         {filteredData.length > 0 ? (
           filteredData.map((data, index) => (
-            <DataBox key={index} color={tabs[activeTab].color}>
+            <DataBox
+              key={index}
+              color={tabs[activeTab].color}
+              onClick={() => handleCountryClick(data)}
+            >
               <ColorIcon color={tabs[activeTab].color} />
               {data.country_nm}
             </DataBox>

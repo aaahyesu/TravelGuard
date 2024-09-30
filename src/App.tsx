@@ -3,6 +3,7 @@ import GlobeComponent from "./components/layout/globeComponent";
 import Header from "./components/common/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CountryInfoPage from "./pages/CountryInfoPage";
+import CountryDetail from "./pages/CountryDetail";
 import PermissionEnter from "./pages/PermissionEnter";
 import EmbassyPage from "./pages/EmbassyPage";
 import styled from "@emotion/styled";
@@ -16,7 +17,7 @@ const SubContainer = styled.div`
 
   overflow: auto;
   @media (max-width: 768px) {
-    padding: 0 10%;
+    padding: 0 12% 0 5%;
   }
 `;
 
@@ -48,6 +49,14 @@ function App() {
             element={
               <SubContainer>
                 <EmbassyPage />
+              </SubContainer>
+            }
+          />
+          <Route
+            path="/country-detail/:countryName"
+            element={
+              <SubContainer>
+                <CountryDetail />
               </SubContainer>
             }
           />
