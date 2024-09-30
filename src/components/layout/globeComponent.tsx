@@ -69,7 +69,7 @@ const GlobeComponent: React.FC = () => {
     );
     display: flex;
     justify-content: center;
-    align-items: center; /* 지구본을 위로 이동 */
+    align-items: center;
     @media (max-width: 768px) {
       align-items: flex-start;
       padding-top: 20px;

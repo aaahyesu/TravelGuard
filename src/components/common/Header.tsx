@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import logo from "../../styles/image/logo.png";
 import hamburgerIcon from "../../styles/image/menuBar.png";
+import exitIcon from "../../styles/image/exitIcon.png";
 
 const NavBar = styled.nav`
   display: flex;
@@ -222,7 +223,7 @@ const Header: React.FC = () => {
 
       {isMenuOpen && (
         <MobileMenuContainer isOpen={isMenuOpen}>
-          <CloseButton src={hamburgerIcon} alt="Close" onClick={toggleMenu} />
+          <CloseButton src={exitIcon} alt="Close" onClick={toggleMenu} />
           <MobileMenu>
             {menuItems.map((item, index) => {
               const isActive = location.pathname === item.path;

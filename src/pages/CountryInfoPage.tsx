@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import Search from "../components/common/Search";
+import PageHeader from "../components/common/PageHeader";
 import { useAlarmData, AlarmDataItem } from "../hooks/useLoadAlarm";
 
 const Container = styled.div`
@@ -11,32 +11,6 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     padding: 0 5px;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 36px;
-  color: #f0f0f0;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-top: 30px;
-
-  @media (max-width: 768px) {
-    font-size: 24px;
-    padding-top: 15px;
-    margin-bottom: 10px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 18px;
-  font-weight: 400;
-  color: #d3d3d3;
-  margin-bottom: 40px;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -168,11 +142,11 @@ const CountryInfoPage: React.FC = () => {
 
   return (
     <Container>
-      <Title>국가별 정보</Title>
-      <Subtitle>
-        국가별 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를 제공합니다.
-      </Subtitle>
-      <Search onChange={handleSearchChange} /> {/* 검색어 업데이트 */}
+      <PageHeader
+        title="국가별 정보"
+        subtitle="국가별 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를 제공합니다."
+        onSearchChange={handleSearchChange}
+      />
       <TabContainer>
         {tabs.map((tab, index) => (
           <Tab

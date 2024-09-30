@@ -62,8 +62,8 @@ const containerStyle = css`
   z-index: 100;
 
   @media (max-width: 768px) {
-    bottom: 20%;
-    left: 50%;
+    bottom: 32%;
+    left: 43%;
     transform: translate(-50%, 50%);
     width: 300px;
     padding: 15px;

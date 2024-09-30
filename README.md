@@ -18,3 +18,9 @@
 - [x] [국가별 정보] Mobile & Web UI 최적화
 
 ---
+
+- [x] [국가별 대사관 정보] API 연동
+- [x] [국가별 대사관 정보] 국가 별 정보 (전체 / 디테일)페이지 제작
+- [x] [국가별 대사관 정보] 검색 및 단계 별 정렬 구현
+- [ ] [국가별 대사관 정보] Mobile & Web UI 최적화(WEB 완료)
+- [ ] Encountered two children with the same key ``에러 해결 . . .

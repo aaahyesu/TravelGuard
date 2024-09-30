@@ -25,14 +25,14 @@ const EmbassyInfoContainer = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    width: 112%;
-    padding: 16px 0px;
-    font-size: 23px;
+    width: 50%;
+    padding: 0; // 모바일 여백 조정
+    font-size: 10px;
   }
 `;
 
 const EmbassyInfoRow = styled.div`
-  margin: 0 20px 25px;
+  margin: 10px 0; // 위아래 여백을 균일하게 설정
   font-weight: 400;
   font-size: 20px;
   color: #7fa9ff;
@@ -42,7 +42,7 @@ const EmbassyInfoRow = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Smaller font size for mobile */
+    font-size: 18px; // 모바일에서 폰트 사이즈 조정
   }
 `;
 
@@ -50,9 +50,6 @@ const EmbassyComponent: React.FC<EmbassyComponentProps> = ({
   countryCode,
   countryName,
 }) => {
-  console.log("Country Code:", countryCode); // Log the country code
-  console.log("Country Name:", countryName); // Log the country name if used
-
   const { embassyData, loading, error } = useEmbassy(countryCode);
 
   if (loading) return <EmbassyInfoContainer>Loading...</EmbassyInfoContainer>;
@@ -61,22 +58,20 @@ const EmbassyComponent: React.FC<EmbassyComponentProps> = ({
       <EmbassyInfoContainer>Error loading embassy data</EmbassyInfoContainer>
     );
 
-  console.log("Embassy Data:", embassyData); // Log fetched data
-
-  if (!embassyData)
+  if (!embassyData || embassyData.length === 0)
     return (
       <EmbassyInfoContainer>No embassy data available</EmbassyInfoContainer>
     );
 
+  const embassy = embassyData[0]; // 배열의 첫 번째 요소 사용
+
   return (
     <EmbassyInfoContainer>
       <EmbassyInfoRow>국가: {countryName}</EmbassyInfoRow>
-      <EmbassyInfoRow>재외공관: {embassyData.embassyName}</EmbassyInfoRow>
-      <EmbassyInfoRow>주소: {embassyData.embassyAddress}</EmbassyInfoRow>
-      <EmbassyInfoRow>대표전화번호: {embassyData.phone}</EmbassyInfoRow>
-      <EmbassyInfoRow>
-        긴급전화번호: {embassyData.emergencyPhone}
-      </EmbassyInfoRow>
+      <EmbassyInfoRow>재외공관: {embassy.embassyName}</EmbassyInfoRow>
+      <EmbassyInfoRow>주소: {embassy.embassyAddress}</EmbassyInfoRow>
+      <EmbassyInfoRow>대표전화번호: {embassy.phone}</EmbassyInfoRow>
+      <EmbassyInfoRow>긴급전화번호: {embassy.emergencyPhone}</EmbassyInfoRow>
     </EmbassyInfoContainer>
   );
 };

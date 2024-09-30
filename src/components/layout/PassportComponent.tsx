@@ -43,12 +43,37 @@ const PassportItem = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Smaller font size for mobile */
+    font-size: 16px;
+  }
+`;
+const NoCountryContainer = styled.div`
+  width: 112%;
+  height: auto;
+  min-height: 420px;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  border: 1px solid rgba(127, 169, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  text-align: center;
+  font-size: 20px;
+  color: #f0f0f0;
+  font-family: "Pretendard";
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+    min-height: 100px;
+    font-size: 18px;
   }
 `;
 
 interface PassportComponentProps {
-  countryName: string; // CountryDetail에서 국가 이름을 prop으로 받아온다.
+  countryName: string;
 }
 
 const PassportComponent: React.FC<PassportComponentProps> = ({
@@ -59,13 +84,17 @@ const PassportComponent: React.FC<PassportComponentProps> = ({
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  // passportData에서 해당 국가 정보를 찾는다.
+  // passportData에서 해당 국가 정보를 찾기
   const countryInfo = passportData.find(
     (country: PassportData) => country["국가"] === countryName
   );
 
   if (!countryInfo) {
-    return <div>해당 국가의 여권 정보를 찾을 수 없습니다.</div>;
+    return (
+      <NoCountryContainer>
+        해당 국가의 여권 정보를 찾을 수 없습니다.
+      </NoCountryContainer>
+    );
   }
 
   return (

@@ -28,6 +28,31 @@ const SafeNewsContainer = styled.div`
   }
 `;
 
+const NoSafeNewsContainer = styled.div`
+  width: 112%;
+  height: auto;
+  min-height: 300px;
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  border: 1px solid rgba(127, 169, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  text-align: center;
+  font-size: 20px;
+  color: #f0f0f0;
+  font-family: "Pretendard";
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+    min-height: 100px;
+    font-size: 18px;
+    width: 98%;
+  }
+`;
+
 const NewsTitle = styled.h2`
   font-size: 24px;
   font-weight: 600;
@@ -79,7 +104,7 @@ const NewsItem = styled.div`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    line-height: 24px; /* Adjusted line height for mobile */
+    line-height: 24px;
   }
 `;
 
@@ -88,7 +113,7 @@ const NewsItemTitle = styled.span`
   font-weight: 400;
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Smaller font size for news item title on mobile */
+    font-size: 16px;
   }
 `;
 
@@ -96,10 +121,10 @@ const NewsItemDate = styled.span`
   font-size: 18px;
   font-weight: 400;
   color: #d3d3d3;
-  margin-left: 10px; /* 날짜와 스크롤바 사이의 간격 */
+  margin-left: 10px;
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Smaller font size for news item date on mobile */
+    font-size: 16px;
   }
 `;
 
@@ -118,30 +143,37 @@ const NewsComponent: React.FC<{ countryName: string }> = ({ countryName }) => {
     setSelectedNews(null);
   };
 
+  if (loading) {
+    return <NoSafeNewsContainer>Loading...</NoSafeNewsContainer>;
+  }
+
+  if (error) {
+    return <NoSafeNewsContainer>Error: {error.message}</NoSafeNewsContainer>;
+  }
+
+  if (newsData.length === 0) {
+    return (
+      <NoSafeNewsContainer>
+        해당 국가의 안전 공지가 없습니다.
+      </NoSafeNewsContainer>
+    );
+  }
+
   return (
     <SafeNewsContainer>
       <NewsTitle>안전 공지</NewsTitle>
       <Divider />
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error loading news data</p>
-      ) : newsData.length === 0 ? (
-        <p>해당 국가의 안전 공지가 없습니다.</p>
-      ) : (
-        <NewsList>
-          {newsData.map((news, index) => (
-            <NewsItem
-              key={index}
-              onClick={() => openModal(news.title, news.txt_origin_cn)}
-            >
-              <NewsItemTitle>{news.title}</NewsItemTitle>
-              <NewsItemDate>{news.wrt_dt}</NewsItemDate>
-            </NewsItem>
-          ))}
-        </NewsList>
-      )}
-
+      <NewsList>
+        {newsData.map((news, index) => (
+          <NewsItem
+            key={index}
+            onClick={() => openModal(news.title, news.txt_origin_cn)}
+          >
+            <NewsItemTitle>{news.title}</NewsItemTitle>
+            <NewsItemDate>{news.wrt_dt}</NewsItemDate>
+          </NewsItem>
+        ))}
+      </NewsList>
       {selectedNews && (
         <Modal
           title={selectedNews.title}
