@@ -180,7 +180,7 @@ const MobileMenuItem = styled.li<{ isActive: boolean }>`
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [, setActiveIndex] = useState<number>(0);
   const location = useLocation();
 
   const toggleMenu = () => {
