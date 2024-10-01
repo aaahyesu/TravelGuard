@@ -7,6 +7,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const HeaderContainer = styled.div`
   margin: 50px auto;
   color: #f0f0f0;
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
 `;
 
 const Title = styled.h1`
@@ -59,6 +62,7 @@ const SearchInput = styled.input`
   }
   @media (max-width: 768px) {
     font-size: 14px;
+    width: 77%;
   }
 `;
 
@@ -94,7 +98,7 @@ const PageHeader: React.FC<SearchProps> = ({
         </SearchIcon>
         <SearchInput
           type="text"
-          placeholder="국가 명을 입력하세요"
+          placeholder="국가명을 입력하세요"
           onChange={onSearchChange}
         />
       </SearchContainer>

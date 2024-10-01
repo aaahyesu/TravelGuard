@@ -59,7 +59,7 @@ const Tab = styled.button<{ active: boolean }>`
   }
 
   @media (max-width: 768px) {
-    padding: 8px 10px;
+    padding: 10px 25px;
     font-size: 14px;
   }
 `;
@@ -85,6 +85,8 @@ const DataContainer = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    max-height: 410px;
+    padding: 10px 5px;
   }
 `;
 

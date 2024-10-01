@@ -16,6 +16,12 @@ const Container = styled.div`
   background: transparent;
   min-height: 100vh;
   padding: 20px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    width: 110%;
+  }
 `;
 
 const EmbassyPage: React.FC = () => {
@@ -52,7 +58,7 @@ const EmbassyPage: React.FC = () => {
     <Container>
       <PageHeader
         title="국가별 대사관 정보"
-        subtitle="국가명 검색을 통해 대사관 정보를 얻을 수 있습니다."
+        subtitle="국가명 검색을 통해 비상시 필요한 대사관 정보를 얻을 수 있습니다."
         onSearchChange={handleSearchChange}
       />
       {filteredData && filteredData.length > 0 ? (

@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  /* overflow: hidden; */
+  overflow: hidden;
   color: #f0f0f0;
   background: "linear-gradient(to bottom, #03003d 0%, #070024 43%, #000014 100%)";
 }

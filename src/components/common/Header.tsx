@@ -52,7 +52,7 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li<{ isActive: boolean }>`
   font-family: "Pretendard", sans-serif;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 400;
   color: #f0f0f0;
   text-align: center;

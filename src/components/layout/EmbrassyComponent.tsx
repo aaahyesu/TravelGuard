@@ -25,7 +25,7 @@ const EmbassyInfoContainer = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    width: 50%;
+    width: 100%;
     padding: 0; // 모바일 여백 조정
     font-size: 10px;
   }

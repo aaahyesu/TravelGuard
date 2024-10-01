@@ -60,13 +60,7 @@ const GlobeComponent: React.FC = () => {
   const globeContainerStyle = css`
     width: 100%;
     height: calc(100vh - 140px);
-
-    background: linear-gradient(
-      to bottom,
-      #0a033a 0%,
-      #040019 43%,
-      #040019 100%
-    );
+    background: linear-gradient(to bottom, #0a0818 45%, #1b3d50);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,6 +70,41 @@ const GlobeComponent: React.FC = () => {
       height: 100vh;
     }
   `;
+  const starFieldStyle = css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  `;
+
+  const starStyle = css`
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+
+    @keyframes twinkle {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  `;
+  const generateStars = (count: number) => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      size: Math.random() * 2 + 1,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 2}s`,
+    }));
+  };
+
+  const stars = generateStars(50);
 
   const selectedCountryStyle = css`
     position: absolute;
@@ -138,7 +167,7 @@ const GlobeComponent: React.FC = () => {
       color: #b0b0b0;
 
       @media (max-width: 768px) {
-        font-size: 10px;
+        font-size: 12px;
       }
     }
   `;
@@ -160,6 +189,21 @@ const GlobeComponent: React.FC = () => {
 
   return (
     <div css={globeContainerStyle}>
+      <div css={starFieldStyle}>
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            css={css`
+              ${starStyle}
+              width: ${star.size}px;
+              height: ${star.size}px;
+              left: ${star.left};
+              top: ${star.top};
+              animation-delay: ${star.animationDelay};
+            `}
+          />
+        ))}
+      </div>
       <Globe
         ref={globeEl}
         width={globeDimensions.width}
