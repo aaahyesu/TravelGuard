@@ -6,24 +6,20 @@ import Modal from "../common/Modal";
 const SafeNewsContainer = styled.div`
   width: 112%;
   height: auto;
-  max-height: 260px;
+  max-height: 200px;
   position: relative;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 24px 40px;
-  text-align: left;
-  font-size: 24px;
-  color: #f0f0f0;
+  padding: 15px 40px;
   font-family: "Pretendard";
 
   @media (max-width: 768px) {
-    padding: 16px 20px;
-    font-size: 20px;
+    padding: 5px 20px;
     width: 98%;
   }
 `;
@@ -31,35 +27,36 @@ const SafeNewsContainer = styled.div`
 const NoSafeNewsContainer = styled.div`
   width: 112%;
   height: auto;
-  min-height: 300px;
+  max-height: 200px;
   position: relative;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 40px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: #f0f0f0;
   font-family: "Pretendard";
 
   @media (max-width: 768px) {
     padding: 0 20px;
     min-height: 100px;
-    font-size: 18px;
+    font-size: 16px;
     width: 98%;
   }
 `;
 
 const NewsTitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 16px;
+    margin-bottom: 0;
   }
 `;
 
@@ -104,27 +101,27 @@ const NewsItem = styled.div`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    line-height: 24px;
+    line-height: 20px;
   }
 `;
 
 const NewsItemTitle = styled.span`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 `;
 
 const NewsItemDate = styled.span`
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 400;
   color: #d3d3d3;
   margin-left: 10px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 `;
 

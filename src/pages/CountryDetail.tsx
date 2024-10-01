@@ -4,47 +4,23 @@ import styled from "@emotion/styled";
 import SafeNews from "../components/layout/NewsComponent";
 import PassportComponent from "../components/layout/PassportComponent";
 import EmbassyComponent from "../components/layout/EmbrassyComponent";
+import PageHeader from "../components/common/PageHeader";
 
 const Container = styled.div`
   color: #f0f0f0;
   min-height: 100vh;
-  padding: 20px;
+  padding: 17px;
 
   @media (max-width: 768px) {
     padding: 0 5px;
   }
 `;
 
-const Title = styled.h1`
-  font-size: 36px;
-  color: #f0f0f0;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-top: 30px;
-
-  @media (max-width: 768px) {
-    font-size: 24px;
-    padding-top: 15px;
-    margin-bottom: 10px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 18px;
-  font-weight: 400;
-  color: #d3d3d3;
-  margin-bottom: 40px;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-`;
-
 const CountryBox = styled.div`
-  width: 98%;
+  width: 100%;
+  height: 50px;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   flex-direction: row;
@@ -62,16 +38,16 @@ const CountryBox = styled.div`
 `;
 
 const FlagImg = styled.span`
-  width: 86px;
-  height: 54px;
+  width: 130px;
+  height: 75px;
   border-radius: 4px;
   background-color: #fff;
   background-size: cover;
   background-position: center;
 
-  @media (min-width: 768px) {
-    width: 172px;
-    height: 108px;
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 60px;
   }
 `;
 
@@ -81,12 +57,12 @@ const CountryInfo = styled.div`
 `;
 
 const CountryName = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #f0f0f0;
 
   @media (min-width: 768px) {
-    font-size: 32px;
+    font-size: 20px;
   }
 `;
 
@@ -105,7 +81,7 @@ const ContentRow = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -114,6 +90,7 @@ const ContentRow = styled.div`
 
 const ContinentMap = styled.img`
   width: 110%;
+  max-height: 436px;
   border-radius: 8px;
   background: transparent;
   border: 2px solid rgba(127, 169, 255, 0.6);
@@ -130,6 +107,7 @@ const InfoContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  max-height: 300px;
 
   @media (min-width: 768px) {
     width: 40%;
@@ -149,11 +127,11 @@ const CountryDetail: React.FC = () => {
 
   return (
     <Container>
-      <Title>국가별 정보</Title>
-      <Subtitle>
-        {country?.country_nm} 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를
-        제공합니다.
-      </Subtitle>
+      <PageHeader
+        title={`${country?.country_nm} 국가 정보`}
+        subtitle={`${country?.country_nm}의 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를 제공합니다.`}
+      />
+
       <CountryBox>
         <FlagImg
           style={{ backgroundImage: `url(${country?.flag_download_url})` }}

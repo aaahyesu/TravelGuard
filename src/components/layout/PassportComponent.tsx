@@ -6,36 +6,32 @@ import usePassport, { PassportData } from "../../hooks/usePassport";
 const PassportInfoContainer = styled.div`
   width: 112%;
   height: auto;
-  min-height: 270px;
+  min-height: 160px;
   position: relative;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 40px 40px 0;
-  text-align: left;
-  font-size: 28px;
-  color: #f0f0f0;
-  font-family: "Pretendard";
+  padding: 30px 40px 0;
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 24px 20px 0px;
-    min-height: 200px;
+    padding: 20px 20px 0px;
+    min-height: 130px;
     font-size: 23px;
   }
 `;
 
 const PassportItem = styled.p`
   position: relative;
-  font-size: 20px;
-  line-height: 50%;
+  font-size: 15px;
+  line-height: 30%;
   font-family: "Pretendard Variable";
-  color: #7fa9ff;
+  color: #f0f0f0;
   text-align: left;
 
   &:first-of-type {
@@ -43,24 +39,24 @@ const PassportItem = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 12px;
   }
 `;
 const NoCountryContainer = styled.div`
   width: 112%;
   height: auto;
-  min-height: 420px;
+  min-height: 160px;
   position: relative;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 40px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: #f0f0f0;
   font-family: "Pretendard";
 
@@ -68,7 +64,7 @@ const NoCountryContainer = styled.div`
     width: 100%;
     padding: 0 20px;
     min-height: 100px;
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 

@@ -11,22 +11,20 @@ const EmbassyInfoContainer = styled.div`
   width: 97%;
   height: auto;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #2c2f33, #23272a);
+  background: transparent;
   border: 1px solid rgba(127, 169, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 24px 40px;
+  padding: 15px 40px;
   text-align: left;
-  font-size: 24px;
-  color: #f0f0f0;
-  font-family: "Pretendard";
-  margin-top: 20px;
+  margin-top: 30px;
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 0; // 모바일 여백 조정
+    margin-top: 100px;
+    padding: 15px 20px; // 모바일 여백 조정
     font-size: 10px;
   }
 `;
@@ -34,15 +32,15 @@ const EmbassyInfoContainer = styled.div`
 const EmbassyInfoRow = styled.div`
   margin: 10px 0; // 위아래 여백을 균일하게 설정
   font-weight: 400;
-  font-size: 20px;
-  color: #7fa9ff;
+  font-size: 16px;
+  color: #f0f0f0;
 
   &:last-child {
     margin-bottom: 0;
   }
 
   @media (max-width: 768px) {
-    font-size: 18px; // 모바일에서 폰트 사이즈 조정
+    font-size: 14px; // 모바일에서 폰트 사이즈 조정
   }
 `;
 

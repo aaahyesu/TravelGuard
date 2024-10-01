@@ -51,21 +51,23 @@ const LevelColors = () => {
 const containerStyle = css`
   position: fixed;
   bottom: 40px;
-  left: 80px;
+  left: 5%;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 20px;
   background-color: #1c1c1e;
   border-radius: 10px;
-  width: 400px;
+  width: 100%;
+  max-width: 300px;
   z-index: 100;
 
   @media (max-width: 768px) {
-    bottom: 25%;
+    bottom: 20%;
     left: 50%;
     transform: translate(-50%, 50%);
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     padding: 15px;
   }
 `;
@@ -81,8 +83,8 @@ const itemStyle = css`
 `;
 
 const boxStyle = (color: string) => css`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background-color: ${color};
   border-radius: 4px;
 
@@ -95,8 +97,8 @@ const boxStyle = (color: string) => css`
 const textStyle = css`
   color: white;
   span {
-    font-weight: semiBold;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 14px;
 
     @media (max-width: 768px) {
       font-size: 13px;
@@ -104,11 +106,11 @@ const textStyle = css`
   }
   p {
     margin: 0;
-    font-size: 15px;
+    font-size: 12px;
     color: #b0b0b0;
 
     @media (max-width: 768px) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 `;

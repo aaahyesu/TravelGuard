@@ -1,5 +1,9 @@
 # ✈️ Travel Guard
 
+### 배포 링크
+
+[Travel Guard 배포 링크](https://travelguard-jade.vercel.app/)
+
 ### ☑️ 진행상황
 
 - [x] API 데이터 SET & 공통 Component 생성
@@ -28,4 +32,7 @@
 
 ---
 
+## ⚠️ ERROR / 최적화
+
 - [x] [입국 허가요건 & 국가별 대사관 정보] 모바일 표 사이즈 최적화
+- [x] [전체] 기존 화면 비율 (75% 기준) -> 현재 화면 비율 (100% 기준) 최적화

@@ -9,35 +9,33 @@ const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 140px;
+  height: 100px;
   padding: 0 60px;
   background-color: #0a0818;
   position: relative;
   z-index: 1000;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     padding: 0 20px;
     height: 60px;
   }
 `;
 
 const Logo = styled.img`
-  width: 300px;
+  width: 230px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 180px;
   }
 `;
 
 const MenuContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -45,14 +43,14 @@ const MenuContainer = styled.div`
 const Menu = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 150px;
   list-style: none;
   padding: 0;
 `;
 
 const MenuItem = styled.li<{ isActive: boolean }>`
   font-family: "Pretendard", sans-serif;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 400;
   color: #f0f0f0;
   text-align: center;
@@ -94,7 +92,7 @@ const MenuItem = styled.li<{ isActive: boolean }>`
 const HamburgerMenu = styled.img`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: block;
     width: 40px;
     cursor: pointer;
@@ -116,7 +114,7 @@ const MobileMenuContainer = styled.div<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
   transition: transform 0.3s ease-in-out;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1025px) {
     display: none;
   }
 `;

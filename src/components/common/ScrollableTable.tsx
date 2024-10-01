@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
 
 const ScrollWrapper = styled.div`
-  max-height: 560px;
+  max-height: 500px;
   width: 100%;
   overflow-x: auto;
   padding: 0 10px;
@@ -46,19 +46,21 @@ const Table = styled.table`
     text-align: left;
     border-bottom: 1px solid #5e5e5e;
     line-height: 150%;
+    white-space: normal;
     word-break: break-word;
   }
 
   th {
     color: #7fa9ff;
     border-bottom: 2px solid #7fa9ff;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 100%;
-    font-weight: 500;
+    font-weight: 600;
 
     @media (max-width: 768px) {
       font-size: 16px;
       padding: 8px;
+      font-size: 14px;
       position: sticky;
     }
   }
@@ -75,11 +77,11 @@ const Table = styled.table`
   td {
     background: rgba(44, 47, 51, 0.5);
     color: #f0f0f0;
-    font-size: 20px;
+    font-size: 16px;
     padding-right: 5px;
 
     @media (max-width: 768px) {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 

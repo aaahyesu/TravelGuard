@@ -77,17 +77,17 @@ const ColorIcon = styled.span<{ color: string }>`
 const DataContainer = styled.div`
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
   background-color: #1a1a1a;
   border: 1px solid #7fa9ff99;
   border-radius: 10px;
-  max-height: 500px;
+  max-height: 350px;
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    max-height: 310px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    max-height: 350px;
     padding: 10px 5px;
   }
 `;
@@ -97,8 +97,8 @@ const DataBox = styled.button<{ color: string }>`
   align-items: center;
   color: #f0f0f0;
   border-radius: 8px;
-  padding: 15px 20px;
-  font-size: 16px;
+  padding: 10px 15px;
+  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s, border 0.3s, opacity 0.3s;
   background-color: rgba(8, 8, 8, 0.3);
@@ -111,8 +111,8 @@ const DataBox = styled.button<{ color: string }>`
   }
 
   @media (max-width: 768px) {
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 8px 10px;
+    font-size: 10px;
   }
 `;
 
