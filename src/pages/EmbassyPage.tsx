@@ -54,6 +54,13 @@ const EmbassyPage: React.FC = () => {
       )
     : [];
 
+  // 중복 제거
+  const uniqueData = Array.from(
+    new Map(
+      filteredData.map((embassy) => [embassy.countryName, embassy])
+    ).values()
+  );
+
   return (
     <Container>
       <PageHeader
@@ -61,10 +68,10 @@ const EmbassyPage: React.FC = () => {
         subtitle="국가명 검색을 통해 비상시 필요한 대사관 정보를 얻을 수 있습니다."
         onSearchChange={handleSearchChange}
       />
-      {filteredData && filteredData.length > 0 ? (
+      {uniqueData.length > 0 ? (
         <ScrollableTable
           headers={["국가명", "대사관명", "주소", "전화번호", "긴급전화번호"]}
-          data={filteredData}
+          data={uniqueData}
           renderRow={(embassy: EmbassyData) => (
             <tr key={embassy.countryName}>
               <td>{embassy.countryName}</td>

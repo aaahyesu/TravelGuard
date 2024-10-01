@@ -120,7 +120,7 @@ const GlobeComponent: React.FC = () => {
     width: 300px;
 
     @media (max-width: 768px) {
-      top: 14%;
+      top: 11%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 150px;

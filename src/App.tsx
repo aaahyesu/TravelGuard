@@ -61,7 +61,7 @@ const generateStars = (count: number) => {
 };
 
 function App() {
-  const stars = useMemo(() => generateStars(100), []);
+  const stars = useMemo(() => generateStars(50), []);
 
   return (
     <Router>

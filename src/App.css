@@ -8,6 +8,10 @@ body {
   background: "linear-gradient(to bottom, #03003d 0%, #070024 43%, #000014 100%)";
 }
 
+body.country-detail {
+  overflow: auto;
+}
+
 @font-face {
   font-family: "Pretendard";
   font-weight: 400; /* Regular */

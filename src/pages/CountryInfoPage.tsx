@@ -8,9 +8,11 @@ const Container = styled.div`
   color: #f0f0f0;
   min-height: 100vh;
   padding: 20px;
+  width: 100%;
 
   @media (max-width: 768px) {
-    padding: 0 5px;
+    padding: 0;
+    width: 110%;
   }
 `;
 
@@ -22,7 +24,7 @@ const TabContainer = styled.div`
   @media (max-width: 768px) {
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 0 10px 20px;
   }
 `;
 
@@ -59,7 +61,7 @@ const Tab = styled.button<{ active: boolean }>`
   }
 
   @media (max-width: 768px) {
-    padding: 10px 25px;
+    padding: 10px 20px;
     font-size: 14px;
   }
 `;
@@ -85,7 +87,7 @@ const DataContainer = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    max-height: 410px;
+    max-height: 310px;
     padding: 10px 5px;
   }
 `;

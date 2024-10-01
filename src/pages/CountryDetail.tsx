@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import SafeNews from "../components/layout/NewsComponent";
@@ -81,34 +81,34 @@ const CountryInfo = styled.div`
 `;
 
 const CountryName = styled.div`
-  font-size: 24px; /* Default font size for mobile */
+  font-size: 24px;
   font-weight: 700;
   color: #f0f0f0;
 
   @media (min-width: 768px) {
-    font-size: 32px; /* Larger font size for desktop */
+    font-size: 32px;
   }
 `;
 
 const ContinentName = styled.div`
-  font-size: 14px; /* Default font size for mobile */
+  font-size: 14px;
   font-weight: 400;
   color: #d3d3d3;
   margin-top: 8px;
 
   @media (min-width: 768px) {
-    font-size: 18px; /* Larger font size for desktop */
+    font-size: 18px;
   }
 `;
 
 const ContentRow = styled.div`
   display: flex;
-  flex-direction: column; /* Stack elements on mobile */
+  flex-direction: column;
   gap: 20px;
   margin-top: 40px;
 
   @media (min-width: 768px) {
-    flex-direction: row; /* Row layout for desktop */
+    flex-direction: row;
   }
 `;
 
@@ -120,8 +120,8 @@ const ContinentMap = styled.img`
   object-fit: contain;
 
   @media (min-width: 768px) {
-    width: 50%; /* Half width for desktop */
-    height: 630px; /* Fixed height for desktop */
+    width: 50%;
+    height: 630px;
   }
 `;
 
@@ -129,16 +129,23 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%; /* Full width for mobile */
+  width: 100%;
 
   @media (min-width: 768px) {
-    width: 40%; /* Reduced width for desktop */
+    width: 40%;
   }
 `;
 
 const CountryDetail: React.FC = () => {
   const location = useLocation();
   const { country } = location.state || {};
+
+  useEffect(() => {
+    document.body.classList.add("country-detail");
+    return () => {
+      document.body.classList.remove("country-detail");
+    };
+  }, []);
 
   return (
     <Container>

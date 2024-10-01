@@ -63,12 +63,12 @@ const Table = styled.table`
     }
   }
 
-  th:nth-child(1) {
+  th:nth-of-type(1) {
     width: 15%;
   }
 
-  th:nth-child(4),
-  th:nth-child(5) {
+  th:nth-of-type(4),
+  th:nth-of-type(5) {
     width: 15%;
   }
 
