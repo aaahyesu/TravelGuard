@@ -24,7 +24,7 @@ export const useAlarmData = () => {
 
       try {
         const response = await fetch(
-          `http://apis.data.go.kr/1262000/TravelAlarmService0404/getTravelAlarm0404List?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${perPage}&returnType=JSON`
+          `https://apis.data.go.kr/1262000/TravelAlarmService0404/getTravelAlarm0404List?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${perPage}&returnType=JSON`
         );
 
         if (!response.ok) {
