@@ -45,7 +45,7 @@ const PassportItem = styled.p`
 const NoCountryContainer = styled.div`
   width: 112%;
   height: auto;
-  min-height: 160px;
+  min-height: 190px;
   position: relative;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -56,7 +56,7 @@ const NoCountryContainer = styled.div`
   justify-content: center;
   padding: 0 40px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #f0f0f0;
   font-family: "Pretendard";
 

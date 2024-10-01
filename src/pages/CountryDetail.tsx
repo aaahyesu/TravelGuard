@@ -89,12 +89,12 @@ const ContentRow = styled.div`
 `;
 
 const ContinentMap = styled.img`
-  width: 110%;
+  width: 100%;
   max-height: 436px;
   border-radius: 8px;
   background: transparent;
   border: 2px solid rgba(127, 169, 255, 0.6);
-  object-fit: contain;
+  object-fit: cover;
 
   @media (min-width: 768px) {
     width: 50%;

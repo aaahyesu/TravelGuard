@@ -27,7 +27,7 @@ const SafeNewsContainer = styled.div`
 const NoSafeNewsContainer = styled.div`
   width: 112%;
   height: auto;
-  max-height: 200px;
+  min-height: 225px;
   position: relative;
   border-radius: 8px;
   background: transparent;
@@ -37,7 +37,7 @@ const NoSafeNewsContainer = styled.div`
   justify-content: center;
   padding: 0 40px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #f0f0f0;
   font-family: "Pretendard";
 
