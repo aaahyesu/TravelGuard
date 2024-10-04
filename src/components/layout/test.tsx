@@ -1,11 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Globe from "react-globe.gl";
 import { css } from "@emotion/react";
@@ -18,6 +12,7 @@ const GlobeComponent: React.FC = () => {
   const geoJsonData = useGeoJsonData();
   const alarmData = useAlarmData();
   const navigate = useNavigate();
+  const [hoveredPolygon] = useState<GeoJSONFeature | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<{
     name: string;
     alarmLevel: number | null;
@@ -34,7 +29,7 @@ const GlobeComponent: React.FC = () => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 768;
       setGlobeDimensions({
-        width: isMobile ? 500 : 1200,
+        width: isMobile ? 500 : 1200, // 모바일: 500, 데스크톱: 1200
         height: isMobile ? 500 : 1200,
       });
     };
@@ -43,7 +38,7 @@ const GlobeComponent: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const getAlarmLevelColor = useCallback((level: number | null) => {
+  const getAlarmLevelColor = (level: number | null) => {
     switch (level) {
       case 0:
         return "#E0E0E0";
@@ -60,7 +55,7 @@ const GlobeComponent: React.FC = () => {
       default:
         return "#7F7F7F";
     }
-  }, []);
+  };
 
   const globeContainerStyle = css`
     width: 100%;
@@ -77,7 +72,6 @@ const GlobeComponent: React.FC = () => {
       margin-left: 0;
     }
   `;
-
   const starFieldStyle = css`
     position: absolute;
     top: 0;
@@ -102,7 +96,6 @@ const GlobeComponent: React.FC = () => {
       }
     }
   `;
-
   const generateStars = (count: number) => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -113,7 +106,7 @@ const GlobeComponent: React.FC = () => {
     }));
   };
 
-  const stars = useMemo(() => generateStars(50), []);
+  const stars = generateStars(50);
 
   const selectedCountryStyle = css`
     position: absolute;
@@ -182,40 +175,32 @@ const GlobeComponent: React.FC = () => {
     }
   `;
 
-  const handlePolygonHover = useCallback(
-    (d: GeoJSONFeature | null) => {
-      if (d) {
-        const alarm = alarmData.find(
-          (a: AlarmDataItem) =>
-            a.country_iso_alp2.toUpperCase() ===
-            d.properties.ISO_A2.toUpperCase()
-        );
-        setSelectedCountry({
-          name: alarm?.country_nm || d.properties.ADMIN,
-          alarmLevel: alarm?.alarm_lvl ?? null,
-        });
-      } else {
-        setSelectedCountry(null);
-      }
-    },
-    [alarmData]
-  );
+  const handlePolygonHover = (d: GeoJSONFeature | null) => {
+    if (d) {
+      const alarm = alarmData.find(
+        (a: AlarmDataItem) =>
+          a.country_iso_alp2.toUpperCase() === d.properties.ISO_A2.toUpperCase()
+      );
+      setSelectedCountry({
+        name: alarm?.country_nm || d.properties.ADMIN,
+        alarmLevel: alarm?.alarm_lvl ?? null,
+      });
+    } else {
+      setSelectedCountry(null);
+    }
+  };
 
-  const handlePolygonClick = useCallback(
-    (d: GeoJSONFeature | null) => {
-      if (d) {
-        const alarm = alarmData.find(
-          (a: AlarmDataItem) =>
-            a.country_iso_alp2.toUpperCase() ===
-            d.properties.ISO_A2.toUpperCase()
-        );
-        navigate(`/country-detail/${alarm?.country_nm}`, {
-          state: { country: alarm },
-        });
-      }
-    },
-    [navigate, alarmData]
-  );
+  const handlePolygonClick = (d: GeoJSONFeature | null) => {
+    if (d) {
+      const alarm = alarmData.find(
+        (a: AlarmDataItem) =>
+          a.country_iso_alp2.toUpperCase() === d.properties.ISO_A2.toUpperCase()
+      );
+      navigate(`/country-detail/${alarm?.country_nm}`, {
+        state: { country: alarm },
+      });
+    }
+  };
 
   return (
     <div css={globeContainerStyle}>
@@ -243,7 +228,7 @@ const GlobeComponent: React.FC = () => {
         backgroundColor="rgba(0, 0, 0, 0)"
         polygonsData={geoJsonData?.features || []}
         polygonAltitude={(d: GeoJSONFeature | null) =>
-          d === selectedCountry ? 0.12 : 0.01
+          d === hoveredPolygon ? 0.12 : 0.01
         }
         polygonCapColor={(d: GeoJSONFeature | null) => {
           if (!d) return "rgba(255, 255, 255, 0.1)";
@@ -280,10 +265,15 @@ const GlobeComponent: React.FC = () => {
             <div
               css={boxStyle(getAlarmLevelColor(selectedCountry.alarmLevel))}
             ></div>
-            <span css={textStyle}>
+            <div css={textStyle}>
               <span>{selectedCountry.name}</span>
-              <p>경고 단계: {selectedCountry.alarmLevel ?? "정보 없음"}</p>
-            </span>
+              <p>
+                경고 단계:{" "}
+                {selectedCountry.alarmLevel !== null
+                  ? selectedCountry.alarmLevel
+                  : "정보 없음"}
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -292,4 +282,4 @@ const GlobeComponent: React.FC = () => {
   );
 };
 
-export default React.memo(GlobeComponent);
+export default GlobeComponent;

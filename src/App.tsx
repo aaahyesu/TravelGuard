@@ -1,12 +1,8 @@
 import { useMemo } from "react";
 import "./App.css";
-import GlobeComponent from "./components/layout/globeComponent";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes";
 import Header from "./components/common/Header";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CountryInfoPage from "./pages/CountryInfoPage";
-import CountryDetail from "./pages/CountryDetail";
-import PermissionEnter from "./pages/PermissionEnter";
-import EmbassyPage from "./pages/EmbassyPage";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 
@@ -39,17 +35,6 @@ const Star = styled.div<{
   animation-delay: ${(props) => props.delay};
 `;
 
-const SubContainer = styled.div`
-  padding: 0 15%;
-  height: 100%;
-  overflow: auto;
-  position: relative;
-  z-index: 1;
-  @media (max-width: 768px) {
-    padding: 0 12% 0 5%;
-  }
-`;
-
 const generateStars = (count: number) => {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
@@ -76,41 +61,7 @@ function App() {
           />
         ))}
         <Header />
-        <Routes>
-          <Route path="/" element={<GlobeComponent />} />
-          <Route
-            path="/country-info"
-            element={
-              <SubContainer>
-                <CountryInfoPage />
-              </SubContainer>
-            }
-          />
-          <Route
-            path="/permission-enter"
-            element={
-              <SubContainer>
-                <PermissionEnter />
-              </SubContainer>
-            }
-          />
-          <Route
-            path="/embassy-info"
-            element={
-              <SubContainer>
-                <EmbassyPage />
-              </SubContainer>
-            }
-          />
-          <Route
-            path="/country-detail/:countryName"
-            element={
-              <SubContainer>
-                <CountryDetail />
-              </SubContainer>
-            }
-          />
-        </Routes>
+        <AppRoutes /> {/* 분리된 라우팅 컴포넌트 사용 */}
       </AppContainer>
     </Router>
   );
