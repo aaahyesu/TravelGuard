@@ -25,11 +25,13 @@ const CountryInfoPage: React.FC = () => {
     { text: "0단계 안전국가", color: "#E0E0E0", level: null },
   ];
 
-  const filteredData = alarmData.filter(
-    (item: AlarmDataItem) =>
-      item.alarm_lvl === tabs[activeTab].level &&
-      item.country_nm.toLowerCase().includes(searchTerm.toLowerCase()) // 검색어 필터링
-  );
+  const filteredData = searchTerm
+    ? alarmData.filter((item: AlarmDataItem) =>
+        item.country_nm.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : alarmData.filter(
+        (item: AlarmDataItem) => item.alarm_lvl === tabs[activeTab].level
+      );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -65,10 +67,22 @@ const CountryInfoPage: React.FC = () => {
           filteredData.map((data, index) => (
             <DataBox
               key={index}
-              color={tabs[activeTab].color}
+              color={
+                searchTerm
+                  ? tabs.find((tab) => tab.level === data.alarm_lvl)?.color ||
+                    "#E0E0E0"
+                  : tabs[activeTab].color
+              }
               onClick={() => handleCountryClick(data)}
             >
-              <ColorIcon color={tabs[activeTab].color} />
+              <ColorIcon
+                color={
+                  searchTerm
+                    ? tabs.find((tab) => tab.level === data.alarm_lvl)?.color ||
+                      "#E0E0E0"
+                    : tabs[activeTab].color
+                }
+              />
               {data.country_nm}
             </DataBox>
           ))

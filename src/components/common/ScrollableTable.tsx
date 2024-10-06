@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "@emotion/styled";
 
 const ScrollWrapper = styled.div`
-  max-height: 500px;
+  max-height: 480px;
   width: 100%;
   overflow-x: auto;
   padding: 0 10px;
@@ -23,7 +23,8 @@ const ScrollWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 0 5px;
+    padding: 0;
+    max-height: 450px;
   }
 `;
 
