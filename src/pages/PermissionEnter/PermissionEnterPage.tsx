@@ -1,23 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
-import usePassport, { PassportData } from "../hooks/usePassport";
-import PageHeader from "../components/common/PageHeader";
-import ScrollableTable from "../components/common/ScrollableTable";
-import styled from "@emotion/styled";
-
-const Container = styled.div`
-  background: transparent;
-  min-height: 100vh;
-  width: 100%;
-  padding: 20px;
-  @media (max-width: 768px) {
-    padding: 0;
-    width: 110%;
-  }
-`;
+import usePassport, { PassportData } from "../../hooks/usePassport";
+import PageHeader from "../../components/common/PageHeader";
+import ScrollableTable from "../../components/common/ScrollableTable";
+import { Container } from "./PermissionEnterStyle";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const PermissionEnter: React.FC = () => {
   const { passportData, loading, error } = usePassport();
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const navigate = useNavigate();
 
   if (loading) {
     return (
@@ -30,19 +23,24 @@ const PermissionEnter: React.FC = () => {
   if (error) {
     return (
       <Container>
-        <p>(error.message)</p>
+        <p>{error.message}</p>
       </Container>
     );
   }
 
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>): void {
-    setSearchTerm(e.target.value); // 입력값을 상태에 저장
+    setSearchTerm(e.target.value);
   }
 
-  // 검색어에 따라 필터링된 데이터
   const filteredData = passportData.filter((country: PassportData) =>
     country["국가"].toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleHomeClick = (country: PassportData) => {
+    navigate(`/country-detail/${encodeURIComponent(country["국가"])}`, {
+      state: { country },
+    });
+  };
 
   return (
     <Container>
@@ -61,8 +59,19 @@ const PermissionEnter: React.FC = () => {
         ]}
         data={filteredData}
         renderRow={(country: PassportData) => (
-          <tr key={country["국가"]}>
-            <td>{country["국가"]}</td>
+          <tr
+            key={country["국가"]}
+            onClick={() => handleHomeClick(country)}
+            style={{ cursor: "pointer" }}
+          >
+            <td>
+              <FontAwesomeIcon
+                icon={faHome}
+                style={{ marginRight: "10px", cursor: "pointer" }}
+                onClick={() => handleHomeClick(country)}
+              />
+              {country["국가"]}
+            </td>
             <td>{country["비고"]}</td>
             <td>{country["일반여권소지자-입국가능기간"]}</td>
             <td>{country["일반여권소지자-입국가능여부"]}</td>

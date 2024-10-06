@@ -6,6 +6,8 @@ const ScrollWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
   padding: 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #8f98ac transparent;
 
   &::-webkit-scrollbar {
     height: 8px;
@@ -53,12 +55,11 @@ const Table = styled.table`
   th {
     color: #7fa9ff;
     border-bottom: 2px solid #7fa9ff;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 100%;
     font-weight: 600;
 
     @media (max-width: 768px) {
-      font-size: 16px;
       padding: 8px;
       font-size: 14px;
       position: sticky;
@@ -77,7 +78,7 @@ const Table = styled.table`
   td {
     background: rgba(44, 47, 51, 0.5);
     color: #f0f0f0;
-    font-size: 16px;
+    font-size: 14px;
     padding-right: 5px;
 
     @media (max-width: 768px) {

@@ -1,8 +1,11 @@
 import React, { useState, ChangeEvent } from "react";
-import useEmbassy from "../hooks/useEmbassy";
-import PageHeader from "../components/common/PageHeader";
-import ScrollableTable from "../components/common/ScrollableTable";
-import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import useEmbassy from "../../hooks/useEmbassy";
+import PageHeader from "../../components/common/PageHeader";
+import ScrollableTable from "../../components/common/ScrollableTable";
+import { Container } from "./EmbassyStyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 interface EmbassyData {
   countryName: string;
@@ -12,21 +15,10 @@ interface EmbassyData {
   emergencyPhone: string;
 }
 
-const Container = styled.div`
-  background: transparent;
-  min-height: 100vh;
-  padding: 20px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    padding: 0;
-    width: 110%;
-  }
-`;
-
 const EmbassyPage: React.FC = () => {
   const { embassyData, loading, error } = useEmbassy();
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const navigate = useNavigate();
 
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>): void {
     setSearchTerm(e.target.value);
@@ -61,6 +53,11 @@ const EmbassyPage: React.FC = () => {
     ).values()
   );
 
+  // 국가명 클릭 시 이동하는 함수
+  const handleCountryClick = (countryName: string) => {
+    navigate(`/country-detail/${encodeURIComponent(countryName)}`);
+  };
+
   return (
     <Container>
       <PageHeader
@@ -73,12 +70,24 @@ const EmbassyPage: React.FC = () => {
           headers={["국가명", "대사관명", "주소", "전화번호", "긴급전화번호"]}
           data={uniqueData}
           renderRow={(embassy: EmbassyData) => (
-            <tr key={embassy.countryName}>
+            <tr
+              key={embassy.countryName}
+              onClick={() => handleCountryClick(embassy.countryName)} // 행 클릭 이벤트 추가
+              style={{ cursor: "pointer" }} // 클릭 가능한 마우스 포인터 스타일
+            >
               <td>{embassy.countryName}</td>
               <td>{embassy.embassyName}</td>
               <td>{embassy.embassyAddress}</td>
               <td>{embassy.phone}</td>
               <td>{embassy.emergencyPhone}</td>
+              <td>
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleCountryClick(embassy.countryName)}
+                  title={`${embassy.countryName} 정보 보기`}
+                />
+              </td>
             </tr>
           )}
         />

@@ -42,6 +42,7 @@ const PassportItem = styled.p`
     font-size: 12px;
   }
 `;
+
 const NoCountryContainer = styled.div`
   width: 112%;
   height: auto;
@@ -78,7 +79,26 @@ const PassportComponent: React.FC<PassportComponentProps> = ({
   const { passportData, loading, error } = usePassport();
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+
+  // error가 string 또는 Error 타입인지 체크
+  const isError = (error: any): error is Error => {
+    return error instanceof Error;
+  };
+
+  if (error) {
+    const errorMessage =
+      typeof error === "string"
+        ? error
+        : isError(error)
+        ? error.message
+        : "알 수 없는 오류 발생";
+    return <div>Error: {errorMessage}</div>;
+  }
+
+  // passportData가 undefined일 경우 체크
+  if (!passportData || !Array.isArray(passportData)) {
+    return <NoCountryContainer>여권 데이터가 없습니다.</NoCountryContainer>;
+  }
 
   // passportData에서 해당 국가 정보를 찾기
   const countryInfo = passportData.find(

@@ -3,10 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import SubContainer from "./components/layout/SubContainer";
 import GlobeComponent from "./components/layout/globeComponent";
 
-const CountryInfoPage = lazy(() => import("./pages/CountryInfoPage"));
-const CountryDetail = lazy(() => import("./pages/CountryDetail"));
-const PermissionEnter = lazy(() => import("./pages/PermissionEnter"));
-const EmbassyPage = lazy(() => import("./pages/EmbassyPage"));
+const CountryInfoPage = lazy(
+  () => import("./pages/CountryInfo/CountryInfoPage")
+);
+const CountryDetail = lazy(
+  () => import("./pages/CountryDetail/CountryDetailPage")
+);
+const PermissionEnter = lazy(
+  () => import("./pages/PermissionEnter/PermissionEnterPage")
+);
+const EmbassyPage = lazy(() => import("./pages/Embassy/EmbassyPage"));
 
 function AppRoutes() {
   return (

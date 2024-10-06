@@ -3,13 +3,30 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   color: #f0f0f0;
   background: "linear-gradient(to bottom, #03003d 0%, #070024 43%, #000014 100%)";
 }
 
 body.country-detail {
-  overflow-x: auto;
+  overflow-y: auto;
+  background: transparent;
+
+  scrollbar-width: thin;
+  scrollbar-color: #8f98ac transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px; /* 스크롤바 너비 설정 (웹킷 브라우저) */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤 트랙 투명 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8f98ac; /* 스크롤바 색상 */
+    border-radius: 8px;
+  }
 }
 
 @font-face {

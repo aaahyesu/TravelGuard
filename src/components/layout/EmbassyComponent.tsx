@@ -24,13 +24,13 @@ const EmbassyInfoContainer = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 100px;
-    padding: 15px 20px; // 모바일 여백 조정
+    padding: 5px 20px;
     font-size: 10px;
   }
 `;
 
 const EmbassyInfoRow = styled.div`
-  margin: 10px 0; // 위아래 여백을 균일하게 설정
+  margin: 10px 0;
   font-weight: 400;
   font-size: 16px;
   color: #f0f0f0;
@@ -40,7 +40,7 @@ const EmbassyInfoRow = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 14px; // 모바일에서 폰트 사이즈 조정
+    font-size: 14px;
   }
 `;
 

@@ -58,7 +58,7 @@ const GlobeComponent: React.FC = () => {
 
   const globeContainerStyle = css`
     width: 100%;
-    height: calc(100vh - 140px);
+    height: calc(100vh - 100px);
     background: linear-gradient(to bottom, #0a0818 45%, #1b3d50);
     display: flex;
     justify-content: center;

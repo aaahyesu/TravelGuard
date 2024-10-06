@@ -9,7 +9,7 @@ const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 80px;
   padding: 0 60px;
   background-color: #0a0818;
   position: relative;
