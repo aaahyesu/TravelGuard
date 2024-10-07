@@ -17,6 +17,10 @@ const ModalContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  @media (max-width: 768px) {
+    max-width: 350px;
+    max-height: 80vh;
+  }
 `;
 
 const ModalOverlay = styled.div`
@@ -35,6 +39,9 @@ const ModalTitle = styled.h2`
   border-bottom: 2px solid #7fa9ff; /* 구분선 */
   padding: 0 20px 15px;
   margin-bottom: 16px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -45,6 +52,9 @@ const ModalContent = styled.div`
   & p {
     margin: 0;
     padding: 0;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
   }
 `;
 

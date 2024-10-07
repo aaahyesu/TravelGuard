@@ -5,7 +5,7 @@ import ScrollableTable from "../../components/common/ScrollableTable";
 import { Container } from "./PermissionEnterStyle";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const PermissionEnter: React.FC = () => {
   const { passportData, loading, error } = usePassport();
@@ -64,18 +64,23 @@ const PermissionEnter: React.FC = () => {
             onClick={() => handleHomeClick(country)}
             style={{ cursor: "pointer" }}
           >
-            <td>
-              <FontAwesomeIcon
-                icon={faHome}
-                style={{ marginRight: "10px", cursor: "pointer" }}
-                onClick={() => handleHomeClick(country)}
-              />
-              {country["국가"]}
-            </td>
+            <td>{country["국가"]}</td>
             <td>{country["비고"]}</td>
             <td>{country["일반여권소지자-입국가능기간"]}</td>
             <td>{country["일반여권소지자-입국가능여부"]}</td>
-            <td>{country["입국시 소지여부"]}</td>
+            <td style={{ position: "relative" }}>
+              {country["입국시 소지여부"]}
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                style={{
+                  position: "absolute",
+                  right: "10px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: "#7fa9ff",
+                }}
+              />
+            </td>
           </tr>
         )}
       />

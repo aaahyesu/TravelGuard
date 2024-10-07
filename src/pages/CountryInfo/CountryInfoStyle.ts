@@ -27,10 +27,12 @@ export const TabContainer = styled.div`
 export const Tab = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #f0f0f0;
   border-radius: 8px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
+  margin-right: 5px;
   cursor: pointer;
   transition: background-color 0.3s, border 0.3s, opacity 0.3s;
   border: 1px solid rgba(8, 8, 8, 0.5);

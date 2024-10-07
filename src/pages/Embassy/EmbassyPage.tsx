@@ -46,13 +46,6 @@ const EmbassyPage: React.FC = () => {
       )
     : [];
 
-  // 중복 제거
-  const uniqueData = Array.from(
-    new Map(
-      filteredData.map((embassy) => [embassy.countryName, embassy])
-    ).values()
-  );
-
   // 국가명 클릭 시 이동하는 함수
   const handleCountryClick = (countryName: string) => {
     navigate(`/country-detail/${encodeURIComponent(countryName)}`);
@@ -65,15 +58,15 @@ const EmbassyPage: React.FC = () => {
         subtitle="국가명 검색을 통해 비상시 필요한 대사관 정보를 얻을 수 있습니다."
         onSearchChange={handleSearchChange}
       />
-      {uniqueData.length > 0 ? (
+      {filteredData.length > 0 ? (
         <ScrollableTable
           headers={["국가명", "대사관명", "주소", "전화번호", "긴급전화번호"]}
-          data={uniqueData}
+          data={filteredData}
           renderRow={(embassy: EmbassyData) => (
             <tr
               key={embassy.countryName}
               onClick={() => handleCountryClick(embassy.countryName)} // 행 클릭 이벤트 추가
-              style={{ cursor: "pointer" }} // 클릭 가능한 마우스 포인터 스타일
+              style={{ cursor: "pointer" }}
             >
               <td>{embassy.countryName}</td>
               <td>{embassy.embassyName}</td>
@@ -83,7 +76,7 @@ const EmbassyPage: React.FC = () => {
               <td>
                 <FontAwesomeIcon
                   icon={faArrowRight}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "#7fa9ff" }}
                   onClick={() => handleCountryClick(embassy.countryName)}
                   title={`${embassy.countryName} 정보 보기`}
                 />

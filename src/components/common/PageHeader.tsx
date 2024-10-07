@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderContainer = styled.div`
   margin: auto;
@@ -10,7 +11,12 @@ const HeaderContainer = styled.div`
     padding: 0 10px;
   }
 `;
-
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+`;
 const Title = styled.h1`
   font-size: 28px;
   color: #f0f0f0;
@@ -44,14 +50,13 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
   padding: 10px 50px;
-  width: 92%;
+  width: 94%;
   background-color: transparent;
   border-radius: 16px;
   background-color: #020010;
   border: 2px solid rgba(127, 169, 255, 0.6);
   color: #f0f0f0;
   padding: 12px 16px 12px 55px;
-  gap: 8px;
   font-size: 18px;
 
   &:focus {
@@ -74,6 +79,10 @@ const SearchIcon = styled.span`
     font-size: 14px;
   }
 `;
+const BackIcon = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  margin-right: 10px;
+`;
 
 interface SearchProps {
   title: string;
@@ -86,9 +95,14 @@ const PageHeader: React.FC<SearchProps> = ({
   subtitle,
   onSearchChange,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <HeaderContainer>
-      <Title>{title}</Title>
+      <TitleContainer>
+        <BackIcon icon={faArrowLeft} onClick={() => navigate(-1)} />
+        <Title>{title}</Title>
+      </TitleContainer>
       <Subtitle>{subtitle}</Subtitle>
       {onSearchChange && (
         <SearchContainer>
