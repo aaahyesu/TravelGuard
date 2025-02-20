@@ -11,6 +11,10 @@ export type AlarmDataItem = {
   country_nm: string; // 나라 명(한글)
   dang_map_download_url: string; // 국가 지도 사진
   flag_download_url: string; // 국기 사진 url
+  map_download_url: string; // 지도 다운로드 URL
+  region_ty: string; // 지역 타입
+  remark: string; // 비고
+  written_dt: string; // 작성 날짜
 };
 
 export const useAlarmData = () => {
@@ -35,11 +39,17 @@ export const useAlarmData = () => {
         const data = await response.json();
         console.log("API 응답:", data);
 
-        if (data.resultCode === "0" || data.resultCode === 0) {
-          console.log("데이터:", data.data);
-          setAlarmData(data.data);
+        // 데이터 구조에 맞게 설정
+        if (
+          data.response &&
+          data.response.body &&
+          data.response.body.items &&
+          Array.isArray(data.response.body.items.item)
+        ) {
+          console.log("데이터:", data.response.body.items.item);
+          setAlarmData(data.response.body.items.item);
         } else {
-          console.error("결과 코드 오류:", data.resultCode);
+          console.error("데이터 구조 오류: 예상치 못한 데이터 형식");
         }
       } catch (error) {
         console.error("경고 데이터 가져오기 오류:", error);
