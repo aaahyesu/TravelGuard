@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const CountryBox = styled.div`
-  width: 99%;
+  width: 98%;
   height: 50px;
   border-radius: 8px;
   background: transparent;
@@ -89,10 +89,10 @@ export const ContinentMap = styled.img`
   border-radius: 8px;
   background: transparent;
   border: 2px solid rgba(127, 169, 255, 0.6);
-  object-fit: cover;
+  object-fit: contain;
 
   @media (max-width: 768px) {
-    width: 105%;
+    width: 110%;
   }
 
   @media (min-width: 768px) {
@@ -105,7 +105,7 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
+  width: 98%;
   max-height: 300px;
 
   @media (min-width: 768px) {

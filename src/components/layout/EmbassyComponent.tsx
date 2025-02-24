@@ -8,7 +8,7 @@ interface EmbassyComponentProps {
 }
 
 const EmbassyInfoContainer = styled.div`
-  width: 97%;
+  width: 96.5%;
   height: auto;
   border-radius: 8px;
   background: transparent;
@@ -20,10 +20,10 @@ const EmbassyInfoContainer = styled.div`
   padding: 15px 40px;
   text-align: left;
   margin-top: 30px;
+  margin-bottom: 100px;
 
   @media (max-width: 768px) {
-    width: 100%;
-    margin-top: 100px;
+    width: 98%;
     padding: 5px 20px;
     font-size: 10px;
   }

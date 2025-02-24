@@ -45,7 +45,7 @@ const NoSafeNewsContainer = styled.div`
     padding: 0 20px;
     min-height: 100px;
     font-size: 16px;
-    width: 98%;
+    width: 100%;
   }
 `;
 
