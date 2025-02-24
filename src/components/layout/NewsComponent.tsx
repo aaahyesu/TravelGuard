@@ -148,7 +148,7 @@ const NewsComponent: React.FC<{ countryName: string }> = ({ countryName }) => {
     return <NoSafeNewsContainer>Error: {error.message}</NoSafeNewsContainer>;
   }
 
-  if (newsData.length === 0) {
+  if (!newsData || newsData.length === 0) {
     return (
       <NoSafeNewsContainer>
         해당 국가의 안전 공지가 없습니다.
