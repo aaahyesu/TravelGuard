@@ -17,7 +17,6 @@ const useEmbassy = (countryCode?: string) => {
   useEffect(() => {
     const fetchEmbassyData = async () => {
       try {
-        console.log("Fetching embassy data");
         const response = await axios.get(
           `https://api.odcloud.kr/api/15076569/v1/uddi:7692653c-21f9-4396-b6b3-f3f0cdbe9370?page=1&perPage=255&returnType=JSON&serviceKey=${process.env.REACT_APP_EMBASSY_API_KEY}`
         );

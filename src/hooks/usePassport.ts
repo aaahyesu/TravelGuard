@@ -29,7 +29,6 @@ const usePassport = () => {
           }
         );
 
-        console.log(response);
         setPassportData(response.data.data);
       } catch (err) {
         setError(err as Error);

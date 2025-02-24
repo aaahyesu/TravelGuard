@@ -37,7 +37,6 @@ export const useAlarmData = () => {
         }
 
         const data = await response.json();
-        console.log("API 응답:", data);
 
         // 데이터 구조에 맞게 설정
         if (
@@ -46,7 +45,6 @@ export const useAlarmData = () => {
           data.response.body.items &&
           Array.isArray(data.response.body.items.item)
         ) {
-          console.log("데이터:", data.response.body.items.item);
           setAlarmData(data.response.body.items.item);
         } else {
           console.error("데이터 구조 오류: 예상치 못한 데이터 형식");
