@@ -37,6 +37,17 @@ const GlobeComponent: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Globe 텍스처 이미지 preload
+  useEffect(() => {
+    const preloadImage = (url: string) => {
+      const img = new Image();
+      img.src = url;
+    };
+
+    preloadImage("//unpkg.com/three-globe/example/img/earth-dark.jpg");
+    preloadImage("//unpkg.com/three-globe/example/img/earth-topology.png");
+  }, []);
+
   const getAlarmLevelColor = useCallback((level: number | null) => {
     switch (level) {
       case 0:

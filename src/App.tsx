@@ -1,10 +1,22 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import AppRoutes from "./routes";
 import Header from "./components/common/Header";
 import styled from "@emotion/styled";
-import StarField from "./components/layout/StarField";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faGlobe,
+  faPassport,
+  faBuilding,
+} from "@fortawesome/free-solid-svg-icons";
+
+// 동적 임포트로 변경
+const StarField = lazy(() => import("./components/layout/StarField"));
+
+// 사용할 아이콘만 라이브러리에 추가
+library.add(faGlobe, faPassport, faBuilding);
 
 const AppContainer = styled.div`
   position: relative;
@@ -65,9 +77,11 @@ function App() {
               `}
             </script>
           </Helmet>
-          <StarField />
-          <Header />
-          <AppRoutes />
+          <Suspense fallback={<div>Loading...</div>}>
+            <StarField />
+            <Header />
+            <AppRoutes />
+          </Suspense>
         </AppContainer>
       </Router>
     </HelmetProvider>

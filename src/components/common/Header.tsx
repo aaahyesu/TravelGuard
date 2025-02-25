@@ -193,7 +193,7 @@ const Header: React.FC = () => {
   return (
     <NavBar>
       <Link to="/">
-        <Logo src={logo} alt="Travel Guard Logo" />
+        <Logo src={logo} alt="Travel Guard Logo" loading="lazy" />
       </Link>
 
       <MenuContainer>
