@@ -57,11 +57,14 @@ const textStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 
   span {
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 4px;
+    will-change: transform;
 
     @media (max-width: 768px) {
       font-size: 12px;
@@ -72,6 +75,8 @@ const textStyle = css`
     margin: 0;
     font-size: 12px;
     color: #b0b0b0;
+    will-change: transform;
+    contain: content;
 
     @media (max-width: 768px) {
       font-size: 9px;
