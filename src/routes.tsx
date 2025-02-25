@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import SubContainer from "./components/layout/SubContainer";
-import GlobeComponent from "./components/layout/GlobeComponent";
+import GlobeComponent from "./components/layout/globeComponent";
 
 const CountryInfoPage = lazy(
   () => import("./pages/CountryInfo/CountryInfoPage")
