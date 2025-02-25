@@ -193,7 +193,7 @@ const Header: React.FC = () => {
   return (
     <NavBar>
       <Link to="/">
-        <Logo src={logo} alt="Travel Guard Logo" loading="lazy" />
+        <Logo src={logo} width="230px" alt="Travel Guard Logo" loading="lazy" />
       </Link>
 
       <MenuContainer>
@@ -211,7 +211,12 @@ const Header: React.FC = () => {
         </Menu>
       </MenuContainer>
 
-      <HamburgerMenu src={hamburgerIcon} alt="Menu" onClick={toggleMenu} />
+      <HamburgerMenu
+        src={hamburgerIcon}
+        width="40px"
+        alt="Menu"
+        onClick={toggleMenu}
+      />
 
       {isMenuOpen && (
         <MobileMenuContainer isOpen={isMenuOpen}>
