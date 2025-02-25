@@ -193,7 +193,13 @@ const Header: React.FC = () => {
   return (
     <NavBar>
       <Link to="/">
-        <Logo src={logo} width="230px" alt="Travel Guard Logo" loading="lazy" />
+        <Logo
+          src={logo}
+          width="230px"
+          height="auto"
+          alt="Travel Guard Logo"
+          loading="lazy"
+        />
       </Link>
 
       <MenuContainer>
@@ -214,6 +220,7 @@ const Header: React.FC = () => {
       <HamburgerMenu
         src={hamburgerIcon}
         width="40px"
+        height="auto"
         alt="Menu"
         onClick={toggleMenu}
       />
