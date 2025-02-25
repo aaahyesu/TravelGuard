@@ -22,6 +22,10 @@ function App() {
           <Helmet>
             <title>Travel Guard - 해외여행 안전 정보</title>
             <meta
+              name="keywords"
+              content="Travel Guard,TravelGuard,travel-guard,트래블가드,해외여행,여행경보,입국정보,대사관,여행안전"
+            />
+            <meta
               name="description"
               content="전세계 국가별 여행 경보, 입국 정보, 대사관 정보를 제공하는 해외여행 안전 정보 서비스입니다."
             />
