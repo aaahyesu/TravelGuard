@@ -52,10 +52,9 @@ const useEmbassy = (countryCode?: string) => {
           }));
           setEmbassyData(allEmbassies);
         }
-
-        setLoading(false);
       } catch (err) {
         setError("재외공간 정보 찾기 실패");
+      } finally {
         setLoading(false);
       }
     };

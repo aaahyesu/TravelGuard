@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://travelguard-jade.vercel.app/sitemap.xml

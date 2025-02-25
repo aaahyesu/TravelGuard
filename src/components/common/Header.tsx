@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import logo from "../../styles/image/logo.png";
@@ -177,18 +177,12 @@ const MobileMenuItem = styled.li<{ isActive: boolean }>`
 `;
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [, setActiveIndex] = useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
-  };
-
-  const handleMenuItemClick = (index: number) => {
-    setActiveIndex(index);
-    setIsMenuOpen(false);
-  };
+  }, []);
 
   const menuItems = [
     { path: "/country-info", label: "국가별 정보" },
@@ -208,7 +202,7 @@ const Header: React.FC = () => {
             const isActive = location.pathname === item.path;
             return (
               <MenuItem key={index} isActive={isActive}>
-                <Link to={item.path} onClick={() => handleMenuItemClick(index)}>
+                <Link to={item.path} onClick={toggleMenu}>
                   {item.label}
                 </Link>
               </MenuItem>
@@ -227,10 +221,7 @@ const Header: React.FC = () => {
               const isActive = location.pathname === item.path;
               return (
                 <MobileMenuItem key={index} isActive={isActive}>
-                  <Link
-                    to={item.path}
-                    onClick={() => handleMenuItemClick(index)}
-                  >
+                  <Link to={item.path} onClick={toggleMenu}>
                     {item.label}
                   </Link>
                 </MobileMenuItem>

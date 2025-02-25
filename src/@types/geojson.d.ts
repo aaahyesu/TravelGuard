@@ -4,7 +4,7 @@ declare module "*.geojson" {
     features: {
       type: string;
       properties: {
-        [key: string]: any;
+        [key: string]: unknown;
       };
       geometry: {
         type: string;
