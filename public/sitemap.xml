@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 메인 페이지 -->
   <url>
-    <loc>https://travelguard-jade.vercel.app/</loc>
+    <loc>https://travelguard-jade.vercel.app</loc>
     <lastmod>2024-03-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  
+  <!-- 국가 정보 페이지 -->
+  <url>
+    <loc>https://travelguard-jade.vercel.app/country-info</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 입국 정보 페이지 -->
+  <url>
+    <loc>https://travelguard-jade.vercel.app/permission-enter</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 대사관 정보 페이지 -->
+  <url>
+    <loc>https://travelguard-jade.vercel.app/embassy-info</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 국가 상세 페이지 -->
   <url>
     <loc>https://travelguard-jade.vercel.app/country-detail</loc>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+
+      <!-- 국가 상세 페이지들 -->
+  <url>
+    <loc>https://travelguard-jade.vercel.app/country-detail/대한민국</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://travelguard-jade.vercel.app/country-detail/일본</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://travelguard-jade.vercel.app/country-detail/미국</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset> 
